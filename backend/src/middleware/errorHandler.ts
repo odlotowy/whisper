@@ -4,11 +4,15 @@ export const errorHandler = (
   err: Error,
   _req: Request,
   res: Response,
-  _next: NextFunction,
+  next: NextFunction,
 ) => {
-  console.log("Error", err.message);
+  console.error("Error", err);
 
-  const statusCode = res.statusCode !== 200 ? res.statusCode : 500;
+  if (res.headersSent) {
+    return next(err);
+  }
+
+  const statusCode = res.statusCode >= 400 ? res.statusCode : 500;
 
   res.status(statusCode).json({
     message: err.message || "Internal Server Error",

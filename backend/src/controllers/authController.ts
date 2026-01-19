@@ -21,7 +21,7 @@ export async function getMe(
     res.status(200).json(user);
   } catch (error) {
     res.status(500);
-    next();
+    next(error);
   }
 }
 
