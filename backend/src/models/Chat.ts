@@ -33,3 +33,5 @@ const ChatSchema = new Schema<IChat>(
 );
 
 export const Chat = mongoose.model("Chat", ChatSchema);
+
+ChatSchema.index({ participants: 1 }, { unique: true });
