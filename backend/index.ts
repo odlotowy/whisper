@@ -1,6 +1,7 @@
 import app from "./src/app";
 import { connectDB } from "./src/config/database";
 import { createServer } from "http";
+import { initializeSocket } from "./src/utils/socket";
 
 const PORT = process.env.PORT || 3000;
 
